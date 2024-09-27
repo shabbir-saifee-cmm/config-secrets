@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: enviro
+data:
+  enviro.json: |
+    "hostname": "database.example.com"
+    "port": "666"
+    "name": "mydb"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume-subpath
+spec:
+  volumes:
+    - name: enviro
+      configMap:
+        name: enviro
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - name: enviro
+      mountPath: "/etc/nginx/enviro.json"
+      subPath: enviro.json
+      readOnly: true

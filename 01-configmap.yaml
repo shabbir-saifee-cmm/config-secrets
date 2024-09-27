@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database
+data:
+  hostname: database.example.com
+  port: "666"
+  name: mydb
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: servicebroker
+data:
+  hostname: kafka.example.com
+  port: "999"
+  name: mykafka

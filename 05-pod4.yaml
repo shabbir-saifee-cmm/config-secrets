@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-env
+spec:
+  containers:
+  - name: envars-test-container
+    image: nginx
+    env:
+    - name: RANDOM_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: database
+          key: hostname
